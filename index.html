@@ -4,26 +4,49 @@
 	<meta charset="utf-8">
 	<script>
 		// TODO: create a handler
-    window.addEventListener("load", function(){
+	function setSearchEngine() {
         const engines = document.getElementsByName("engineSelect")
-		console.log(engines)
+
 		for(const engine of engines) { console.log(engine.value,engine.checked) }
 		let google = engines[0]
 		let bing = engines[1]
 		let duckDuckGo = engines[2]
 		let ask = engines[3]
 		let engine
+		
 
-		if(google.checked){ engine = google }
-		if(bing.checked){ engine = bing }
-		if(duckDuckGo.checked){ engine = duckDuckGo }
-		if(ask.checked){ engine = ask }
+		if(google.checked){ engine = "google"}
+		if(bing.checked){ engine = "bing" }
+		if(duckDuckGo.checked){ engine = "duckDuckGo" }
+		if(ask.checked){ engine = "ask" }
 
+		let actions = {
+			"google": "https://www.google.com/search",
+			"bing": "https://www.bing.com/",
+			"duckDuckGo": "https://www.duckduckgo.com/",
+			"ask": "https://www.ask.com/web"
+		}
 
+		let form = document.getElementById("searchForm")
+		console.log(form)
+		console.log(actions[engine])
+		form.setAttribute("action",actions[engine])
+	}
 
+    window.addEventListener("load", function(){
+		const submitButton = document.getElementsByTagName("button")[0]
+		const queryString = document.getElementsByName("q")[0]
 
+		submitButton.addEventListener("click", (event) => {
+			if(queryString.value == "") { 
+				event.preventDefault()
+				alert("Enter a query!")
+			}
+			setSearchEngine()
+		});
     });
 	</script>
+	<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
