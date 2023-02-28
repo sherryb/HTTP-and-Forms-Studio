@@ -3,3 +3,13 @@
     padding: 10px;
     border: 10px solid #555;
 }
+
+h1 {
+    font-size: 24px;
+    padding: 10px;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
